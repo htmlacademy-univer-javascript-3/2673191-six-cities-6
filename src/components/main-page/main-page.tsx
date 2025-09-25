@@ -5,7 +5,7 @@ type MainPageProps = {
 };
 
 export default function MainPage(props: MainPageProps): JSX.Element {
-  const placeCards = [...Array<number>(props.placeCardsPerPage).map((_, i) => ({ id: i }))];
+  const placeCards = [...[...Array<number>(props.placeCardsPerPage)].map((_, i) => ({ id: i }))];
   return (
     <div className="page page--gray page--main">
       <header className="header">
