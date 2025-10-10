@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../app-route';
 
 export default function NotFoundPage(): JSX.Element {
   return (
@@ -34,7 +35,7 @@ export default function NotFoundPage(): JSX.Element {
 
       <main className="page__main page__main--index">
         <h1>404 Not Found{'('}</h1>
-        <Link to='/'>Вернуться на главную</Link>
+        <Link to={AppRoute.Root}>Вернуться на главную</Link>
       </main>
     </div>
   );
