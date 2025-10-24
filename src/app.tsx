@@ -38,7 +38,7 @@ export default function App(props: AppProps): JSX.Element {
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage/>}
+          element={<OfferPage placeCards={props.placeCards}/>}
         />
         <Route
           path="*"
