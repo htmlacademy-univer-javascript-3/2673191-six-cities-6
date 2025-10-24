@@ -11,7 +11,7 @@ import { PlaceCardShortModel } from './models/place-card-short-model';
 
 type AppProps = {
   mainPagePlacesCount: number;
-  mainPagePlaceCards: PlaceCardShortModel[];
+  placeCards: PlaceCardShortModel[];
 };
 
 export default function App(props: AppProps): JSX.Element {
@@ -20,7 +20,7 @@ export default function App(props: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.mainPagePlaceCards}/>}
+          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.placeCards}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -32,7 +32,7 @@ export default function App(props: AppProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <FavoritesPage />
+              <FavoritesPage placeCards={props.placeCards} />
             </PrivateRoute>
           }
         />

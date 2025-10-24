@@ -1,7 +1,7 @@
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 
 type PlaceCardProps = {
-  variant: "city" | "favorite" | "nearby";
+  variant: 'city' | 'favorite' | 'nearby';
   model: PlaceCardShortModel;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
@@ -31,7 +31,8 @@ export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }
             src={model.previewImage}
             width={variant === 'favorite' ? 150 : 260}
             height={variant === 'favorite' ? 110 : 200}
-            alt="Place image" />
+            alt="Place image"
+          />
         </a>
       </div>
       <div className={`${variant === 'favorite' ? 'favorites__card-info ' : ''}place-card__info`}>

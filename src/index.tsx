@@ -10,6 +10,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App mainPagePlacesCount={Setting.mainPagePlaceCardsPerPage} mainPagePlaceCards={placeCards}/>
+    <App mainPagePlacesCount={Setting.mainPagePlaceCardsPerPage} placeCards={placeCards}/>
   </React.StrictMode>
 );

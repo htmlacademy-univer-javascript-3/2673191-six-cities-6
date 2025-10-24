@@ -77,7 +77,7 @@ export default [
     'price': 212,
     'previewImage': 'https://14.design.htmlacademy.pro/static/hotel/18.jpg',
     'city': {
-      'name': 'Paris',
+      'name': 'Hamburg',
       'location': {
         'latitude': 48.85661,
         'longitude': 2.351499,
