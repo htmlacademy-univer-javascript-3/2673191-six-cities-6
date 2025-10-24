@@ -1,11 +1,12 @@
-import PlaceCard from '../../components/place-card/place-card';
+import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import PlaceCardList from '../../components/place-card-list.tsx/place-card-list';
 
 type MainPageProps = {
-  placeCardsPerPage: number;
+  placesCount: number;
+  placeCards: PlaceCardShortModel[];
 };
 
 export default function MainPage(props: MainPageProps): JSX.Element {
-  const placeCards = [...[...Array<number>(props.placeCardsPerPage)].map((_, i) => ({ id: i }))];
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -77,28 +78,7 @@ export default function MainPage(props: MainPageProps): JSX.Element {
         </div>
         <div className="cities">
           <div className="cities__places-container container">
-            <section className="cities__places places">
-              <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">312 places to stay in Amsterdam</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
-              <div className="cities__places-list places__list tabs__content">
-                {placeCards.map((c) => <PlaceCard key={c.id} />)}
-              </div>
-            </section>
+            <PlaceCardList totalCount={props.placesCount} placeCards={props.placeCards} />
             <div className="cities__right-section">
               <section className="cities__map map"></section>
             </div>

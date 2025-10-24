@@ -7,9 +7,11 @@ import LoginPage from './pages/login-page/login-page';
 import FavoritesPage from './pages/favorites-page/favorites-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
+import { PlaceCardShortModel } from './models/place-card-short-model';
 
 type AppProps = {
-  mainPagePlaceCardsPerPage: number;
+  mainPagePlacesCount: number;
+  mainPagePlaceCards: PlaceCardShortModel[];
 };
 
 export default function App(props: AppProps): JSX.Element {
@@ -18,7 +20,7 @@ export default function App(props: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage placeCardsPerPage={props.mainPagePlaceCardsPerPage}/>}
+          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.mainPagePlaceCards}/>}
         />
         <Route
           path={AppRoute.Login}
