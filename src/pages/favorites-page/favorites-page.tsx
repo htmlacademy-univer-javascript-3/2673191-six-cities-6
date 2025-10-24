@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import FavoritePlaceCardList from '../../components/favorite-place-card-list/favorite-place-card-list';
 
@@ -12,7 +14,7 @@ export default function FavoritesPage({ placeCards }: FavoritesPageProps): JSX.E
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link" href="main.html">
+              <Link className="header__logo-link" to={AppRoute.Root}>
                 <img
                   className="header__logo"
                   src="img/logo.svg"
@@ -20,7 +22,7 @@ export default function FavoritesPage({ placeCards }: FavoritesPageProps): JSX.E
                   width={81}
                   height={41}
                 />
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -55,7 +57,7 @@ export default function FavoritesPage({ placeCards }: FavoritesPageProps): JSX.E
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link"  to={AppRoute.Root}>
           <img
             className="footer__logo"
             src="img/logo.svg"
@@ -63,7 +65,7 @@ export default function FavoritesPage({ placeCards }: FavoritesPageProps): JSX.E
             width={64}
             height={33}
           />
-        </a>
+        </Link>
       </footer>
     </div>
   );

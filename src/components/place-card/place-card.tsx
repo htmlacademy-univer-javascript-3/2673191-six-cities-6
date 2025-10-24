@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 
 type PlaceCardProps = {
@@ -25,7 +27,7 @@ export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }
           <span>Premium</span>
         </div>}
       <div className={`${variantClass}__image-wrapper place-card__image-wrapper`}>
-        <a href="#">
+        <Link to={`${AppRoute.Offer}/${model.id}`}>
           <img
             className="place-card__image"
             src={model.previewImage}
@@ -33,7 +35,7 @@ export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }
             height={variant === 'favorite' ? 110 : 200}
             alt="Place image"
           />
-        </a>
+        </Link>
       </div>
       <div className={`${variant === 'favorite' ? 'favorites__card-info ' : ''}place-card__info`}>
         <div className="place-card__price-wrapper">
@@ -55,7 +57,7 @@ export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">{model.title}</a>
+          <Link to={`${AppRoute.Offer}/${model.id}`}>{model.title}</Link>
         </h2>
         <p className="place-card__type">{model.type}</p>
       </div>
