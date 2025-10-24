@@ -12,14 +12,13 @@ export default function NearPlaceCardList({ placeCards }: NearPlaceCardListProps
         Other places in the neighbourhood
       </h2>
       <div className="near-places__list places__list">
-        {placeCards.map((c) =>
-          (
-            <PlaceCard
-              variant='nearby'
-              key={c.id}
-              model={c}
-            />
-          ))}
+        {placeCards.map((c) => (
+          <PlaceCard
+            variant='nearby'
+            key={c.id}
+            model={c}
+          />
+        ))}
       </div>
     </section>
   );

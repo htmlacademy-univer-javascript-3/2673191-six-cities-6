@@ -30,16 +30,15 @@ export default function PlaceCardList(props: PlaceCardListProps): JSX.Element {
         </ul>
       </form>
       <div className="cities__places-list places__list tabs__content">
-        {props.placeCards.map((c) =>
-          (
-            <PlaceCard
-              variant='city'
-              key={c.id}
-              model={c}
-              onMouseEnter={() => setActiveCardId(c.id)}
-              onMouseLeave={() => setActiveCardId(undefined)}
-            />
-          ))}
+        {props.placeCards.map((c) => (
+          <PlaceCard
+            variant='city'
+            key={c.id}
+            model={c}
+            onMouseEnter={() => setActiveCardId(c.id)}
+            onMouseLeave={() => setActiveCardId(undefined)}
+          />
+        ))}
       </div>
     </section>
   );
