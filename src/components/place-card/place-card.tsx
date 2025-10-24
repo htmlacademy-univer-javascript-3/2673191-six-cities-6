@@ -1,15 +1,22 @@
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 
 type PlaceCardProps = {
+  variant: "city" | "favorite" | "nearby";
   model: PlaceCardShortModel;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export default function PlaceCard({ model, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
+export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
+  const variantClass = {
+    city: 'cities',
+    favorite: 'favorites',
+    nearby: 'near-places'
+  }[variant];
+
   return (
     <article
-      className="cities__card place-card"
+      className={`${variantClass}__card place-card`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
@@ -17,12 +24,17 @@ export default function PlaceCard({ model, onMouseEnter, onMouseLeave }: PlaceCa
         <div className="place-card__mark">
           <span>Premium</span>
         </div>}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${variantClass}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
-          <img className="place-card__image" src={model.previewImage} width="260" height="200" alt="Place image" />
+          <img
+            className="place-card__image"
+            src={model.previewImage}
+            width={variant === 'favorite' ? 150 : 260}
+            height={variant === 'favorite' ? 110 : 200}
+            alt="Place image" />
         </a>
       </div>
-      <div className="place-card__info">
+      <div className={`${variant === 'favorite' ? 'favorites__card-info ' : ''}place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{model.price}</b>

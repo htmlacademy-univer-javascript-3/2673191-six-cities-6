@@ -33,6 +33,7 @@ export default function PlaceCardList(props: PlaceCardListProps): JSX.Element {
         {props.placeCards.map((c) =>
           (
             <PlaceCard
+              variant='city'
               key={c.id}
               model={c}
               onMouseEnter={() => setActiveCardId(c.id)}
