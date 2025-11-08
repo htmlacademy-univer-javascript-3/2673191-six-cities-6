@@ -7,9 +7,13 @@ import LoginPage from './pages/login-page/login-page';
 import FavoritesPage from './pages/favorites-page/favorites-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
+import { PlaceCardModel } from './models/place-card-model';
+import { PlaceCardShortModel } from './models/place-card-short-model';
 
 type AppProps = {
-  mainPagePlaceCardsPerPage: number;
+  mainPagePlacesCount: number;
+  models: PlaceCardModel[];
+  placeCards: PlaceCardShortModel[];
 };
 
 export default function App(props: AppProps): JSX.Element {
@@ -18,7 +22,7 @@ export default function App(props: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage placeCardsPerPage={props.mainPagePlaceCardsPerPage}/>}
+          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.placeCards}/>}
         />
         <Route
           path={AppRoute.Login}
@@ -30,13 +34,13 @@ export default function App(props: AppProps): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <FavoritesPage />
+              <FavoritesPage placeCards={props.placeCards} />
             </PrivateRoute>
           }
         />
         <Route
-          path={AppRoute.Offer}
-          element={<OfferPage/>}
+          path={`${AppRoute.Offer}/:id`}
+          element={<OfferPage models={props.models} nearbyPlaceCards={props.placeCards}/>}
         />
         <Route
           path="*"

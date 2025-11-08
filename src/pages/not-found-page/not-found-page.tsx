@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../app-route';
 
 export default function NotFoundPage(): JSX.Element {
   return (
@@ -7,9 +8,9 @@ export default function NotFoundPage(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <a className="header__logo-link header__logo-link--active">
+              <Link className="header__logo-link header__logo-link--active" to={AppRoute.Root}>
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </a>
+              </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
@@ -34,7 +35,7 @@ export default function NotFoundPage(): JSX.Element {
 
       <main className="page__main page__main--index">
         <h1>404 Not Found{'('}</h1>
-        <Link to='/'>Вернуться на главную</Link>
+        <Link to={AppRoute.Root}>Вернуться на главную</Link>
       </main>
     </div>
   );
