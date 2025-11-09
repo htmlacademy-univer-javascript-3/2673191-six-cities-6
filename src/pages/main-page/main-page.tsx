@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import PlaceCardList from '../../components/place-card-list.tsx/place-card-list';
+import Map from '../../components/map/map';
 
 type MainPageProps = {
   placesCount: number;
@@ -82,7 +83,11 @@ export default function MainPage(props: MainPageProps): JSX.Element {
           <div className="cities__places-container container">
             <PlaceCardList totalCount={props.placesCount} placeCards={props.placeCards} />
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map
+                cityLocation={props.placeCards[0].city.location}
+                offerLocations={props.placeCards.map((p) => [p.id, p.location])}
+                selectedOfferId={props.placeCards[0].id}
+              />
             </div>
           </div>
         </div>

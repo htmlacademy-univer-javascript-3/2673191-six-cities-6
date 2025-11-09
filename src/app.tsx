@@ -22,11 +22,11 @@ export default function App(props: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.placeCards}/>}
+          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.placeCards} />}
         />
         <Route
           path={AppRoute.Login}
-          element={<LoginPage/>}
+          element={<LoginPage />}
         />
         <Route
           path={AppRoute.Favorites}
@@ -40,7 +40,7 @@ export default function App(props: AppProps): JSX.Element {
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage models={props.models} nearbyPlaceCards={props.placeCards}/>}
+          element={<OfferPage models={props.models} nearbyPlaceCards={props.placeCards} />}
         />
         <Route
           path="*"
