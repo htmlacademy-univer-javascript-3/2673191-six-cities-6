@@ -84,6 +84,7 @@ export default function MainPage(props: MainPageProps): JSX.Element {
             <MainPlaceCardList totalCount={props.placesCount} placeCards={props.placeCards} />
             <div className="cities__right-section">
               <Map
+                type='cities'
                 cityLocation={props.placeCards[0].city.location}
                 offerLocations={props.placeCards.map((p) => [p.id, p.location])}
                 selectedOfferId={props.placeCards[0].id}

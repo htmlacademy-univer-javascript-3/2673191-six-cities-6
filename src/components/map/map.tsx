@@ -20,12 +20,18 @@ const currentCustomIcon = new Icon({
 });
 
 type MapProps = {
+  type: 'cities' | 'offer';
   cityLocation: LocationModel;
   offerLocations: [string, LocationModel][];
   selectedOfferId: string;
 };
 
-export default function Map({ cityLocation, offerLocations, selectedOfferId }: MapProps): JSX.Element {
+export default function Map({ type, cityLocation, offerLocations, selectedOfferId }: MapProps): JSX.Element {
+  const mapClass = {
+    'cities': 'cities__map',
+    'offer': 'offer__map'
+  }[type];
+
   const mapRef = useRef(null);
   const map = useMap(mapRef, cityLocation);
 
@@ -54,6 +60,6 @@ export default function Map({ cityLocation, offerLocations, selectedOfferId }: M
   }, [map, offerLocations, selectedOfferId]);
 
   return (
-    <section className="cities__map map" ref={mapRef}></section>
+    <section className={`${mapClass} map`} ref={mapRef}></section>
   );
 }

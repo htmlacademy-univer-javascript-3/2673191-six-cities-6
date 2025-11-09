@@ -3,6 +3,7 @@ import { PlaceCardModel } from '../../models/place-card-model';
 import OfferReviewSection from '../offer-review/offer-review-section';
 import NearPlaceCardList from '../place-card/near-place-card-list';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import Map from '../map/map';
 
 type OfferProps = {
   model: PlaceCardModel;
@@ -95,7 +96,12 @@ export default function Offer({ model, nearbyPlaceCards }: OfferProps): JSX.Elem
             <OfferReviewSection />
           </div>
         </div>
-        <section className="offer__map map" />
+        <Map
+          type='offer'
+          cityLocation={nearbyPlaceCards[0].city.location}
+          offerLocations={nearbyPlaceCards.map((p) => [p.id, p.location])}
+          selectedOfferId={nearbyPlaceCards[0].id}
+        />
       </section>
       <div className="container">
         <NearPlaceCardList placeCards={nearbyPlaceCards} />
