@@ -1,7 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
-import NearPlaceCardList from '../../components/near-place-card-list/near-place-card-list';
 import { PlaceCardModel } from '../../models/place-card-model';
 import Offer from '../../components/offer/offer';
 
@@ -57,10 +56,7 @@ export default function OfferPage({ models, nearbyPlaceCards }: OfferPageProps):
         </div>
       </header>
       <main className="page__main page__main--offer">
-        <Offer model={model} />
-        <div className="container">
-          <NearPlaceCardList placeCards={nearbyPlaceCards}/>
-        </div>
+        <Offer model={model} nearbyPlaceCards={nearbyPlaceCards} />
       </main>
     </div>
   );

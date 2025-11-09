@@ -1,5 +1,5 @@
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
-import PlaceCard from '../place-card/place-card';
+import PlaceCard from './place-card';
 
 type NearPlaceCardListProps = {
   placeCards: PlaceCardShortModel[];
