@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function OfferCommentForm(): JSX.Element {
+export default function OfferReviewForm(): JSX.Element {
   const [formState, setFormState] = useState({
     rating: 0,
     review: ''
