@@ -1,6 +1,6 @@
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import { groupBy } from '../../tools/group-by';
-import PlaceCard from '../place-card/place-card';
+import PlaceCard from './place-card';
 
 type FavoritePlaceCardListProps = {
   placeCards: PlaceCardShortModel[];

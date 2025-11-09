@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { PlaceCardModel } from '../../models/place-card-model';
 import OfferReviewSection from '../offer-review/offer-review-section';
-import NearPlaceCardList from '../near-place-card-list/near-place-card-list';
+import NearPlaceCardList from '../place-card/near-place-card-list';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 
 type OfferProps = {

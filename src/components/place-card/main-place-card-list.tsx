@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
-import PlaceCard from '../place-card/place-card';
+import PlaceCard from './place-card';
 
 type PlaceCardListProps = {
   totalCount: number;
   placeCards: PlaceCardShortModel[];
 };
 
-export default function PlaceCardList(props: PlaceCardListProps): JSX.Element {
+export default function MainPlaceCardList(props: PlaceCardListProps): JSX.Element {
   const [, setActiveCardId] = useState<string>();
 
   return (

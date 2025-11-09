@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
-import FavoritePlaceCardList from '../../components/favorite-place-card-list/favorite-place-card-list';
+import FavoritePlaceCardList from '../../components/place-card/favorite-place-card-list';
 
 type FavoritesPageProps = {
   placeCards: PlaceCardShortModel[];

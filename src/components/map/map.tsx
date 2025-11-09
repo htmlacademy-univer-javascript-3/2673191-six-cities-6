@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { LocationModel } from '../../models/location-model';
-import useMap from './use-map';
+import useMap from '../../hooks/use-map';
 import { Icon, layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
