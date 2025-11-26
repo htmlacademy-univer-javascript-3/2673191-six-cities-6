@@ -1,10 +1,10 @@
 import { ReviewModel } from '../../models/review-model';
 
-type OfferReviewProps = {
+type Props = {
   model: ReviewModel;
 };
 
-export default function OfferReview({ model }: OfferReviewProps): JSX.Element {
+export default function OfferReview({ model }: Props): JSX.Element {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">

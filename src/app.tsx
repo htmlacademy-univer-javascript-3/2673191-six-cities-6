@@ -10,12 +10,12 @@ import NotFoundPage from './pages/not-found-page/not-found-page';
 import { PlaceCardModel } from './models/place-card-model';
 import { PlaceCardShortModel } from './models/place-card-short-model';
 
-type AppProps = {
+type Props = {
   models: PlaceCardModel[];
   placeCards: PlaceCardShortModel[];
 };
 
-export default function App(props: AppProps): JSX.Element {
+export default function App(props: Props): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>

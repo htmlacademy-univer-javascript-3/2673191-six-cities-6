@@ -5,12 +5,12 @@ import NearPlaceCardList from '../place-card/near-place-card-list';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import Map from '../map/map';
 
-type OfferProps = {
+type Props = {
   model: PlaceCardModel;
   nearbyPlaceCards: PlaceCardShortModel[];
 };
 
-export default function Offer({ model, nearbyPlaceCards }: OfferProps): JSX.Element {
+export default function Offer({ model, nearbyPlaceCards }: Props): JSX.Element {
   return (
     <Fragment>
       <section className="offer">

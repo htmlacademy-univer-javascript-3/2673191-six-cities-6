@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 
-type PlaceCardProps = {
+type Props = {
   variant: 'city' | 'favorite' | 'nearby';
   model: PlaceCardShortModel;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 };
 
-export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }: PlaceCardProps): JSX.Element {
+export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }: Props): JSX.Element {
   const variantClass = {
     city: 'cities',
     favorite: 'favorites',

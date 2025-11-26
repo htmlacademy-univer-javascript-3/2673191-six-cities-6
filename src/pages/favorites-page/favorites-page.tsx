@@ -3,11 +3,11 @@ import { AppRoute } from '../../app-route';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import FavoritePlaceCardList from '../../components/place-card/favorite-place-card-list';
 
-type FavoritesPageProps = {
+type Props = {
   placeCards: PlaceCardShortModel[];
 };
 
-export default function FavoritesPage({ placeCards }: FavoritesPageProps): JSX.Element {
+export default function FavoritesPage({ placeCards }: Props): JSX.Element {
   return (
     <div className="page">
       <header className="header">

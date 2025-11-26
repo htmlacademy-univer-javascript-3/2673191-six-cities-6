@@ -1,35 +1,37 @@
+import { useMemo, useState } from 'react';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import { OfferSortOption } from '../../models/offer-sort-option';
+import PlaceCardSortForm from './place-card-sort-form';
 import PlaceCard from './place-card';
 
-type PlaceCardListProps = {
-  totalCount: number;
+type Props = {
   cityName: string;
-  placeCards: PlaceCardShortModel[];
+  offers: PlaceCardShortModel[];
   onChangeActiveOfferId: (offerId: string | undefined) => void;
 };
 
-export default function MainPlaceCardList({ totalCount, cityName, placeCards, onChangeActiveOfferId }: PlaceCardListProps): JSX.Element {
+const SORTERS: Record<OfferSortOption, ((offers: PlaceCardShortModel[]) => PlaceCardShortModel[])> = {
+  [OfferSortOption.Popular]: (offers) => offers,
+  [OfferSortOption.PriceLowToHigh]: (offers) => offers.slice().sort((a, b) => a.price - b.price),
+  [OfferSortOption.PriceHighToLow]: (offers) => offers.slice().sort((a, b) => b.price - a.price),
+  [OfferSortOption.TopRatedFirst]: (offers) => offers.slice().sort((a, b) => b.rating - a.rating),
+};
+
+export default function MainPlaceCardList({ cityName, offers, onChangeActiveOfferId }: Props): JSX.Element {
+  const [selectedSortOption, setSelectedSortOption] = useState<OfferSortOption>(OfferSortOption.Popular);
+
+  const sortedOffers = useMemo(
+    () => SORTERS[selectedSortOption](offers),
+    [selectedSortOption, offers]
+  );
+
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{totalCount} places to stay in {cityName}</b>
-      <form className="places__sorting" action="#" method="get">
-        <span className="places__sorting-caption">Sort by</span>
-        <span className="places__sorting-type" tabIndex={0}>
-          Popular
-          <svg className="places__sorting-arrow" width="7" height="4">
-            <use xlinkHref="#icon-arrow-select"></use>
-          </svg>
-        </span>
-        <ul className="places__options places__options--custom places__options--opened">
-          <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-          <li className="places__option" tabIndex={0}>Price: low to high</li>
-          <li className="places__option" tabIndex={0}>Price: high to low</li>
-          <li className="places__option" tabIndex={0}>Top rated first</li>
-        </ul>
-      </form>
+      <b className="places__found">{offers.length} places to stay in {cityName}</b>
+      <PlaceCardSortForm selectedOption={selectedSortOption} onChange={setSelectedSortOption} />
       <div className="cities__places-list places__list tabs__content">
-        {placeCards.map((c) => (
+        {sortedOffers.map((c) => (
           <PlaceCard
             variant='city'
             key={c.id}

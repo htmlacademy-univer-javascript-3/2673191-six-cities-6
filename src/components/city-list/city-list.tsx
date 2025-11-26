@@ -1,12 +1,12 @@
 import { CityModel } from '../../models/city';
 
-type CityListProps = {
+type Props = {
   cities: CityModel[];
   selectedCityName: string;
   onSelectCity: (city: CityModel) => void;
 };
 
-export default function CityList({ cities, selectedCityName, onSelectCity }: CityListProps): JSX.Element {
+export default function CityList({ cities, selectedCityName, onSelectCity }: Props): JSX.Element {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">

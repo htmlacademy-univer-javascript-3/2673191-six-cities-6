@@ -1,13 +1,13 @@
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../app-route';
-import MainPlaceCardList from '../../components/place-card/main-place-card-list';
-import Map from '../../components/map/map';
-import CityList from '../../components/city-list/city-list';
-import cities from '../../mocks/cities';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-map-dispatch';
 import { selectCity } from '../../store/action';
-import { useMemo, useState } from 'react';
+import { AppRoute } from '../../app-route';
+import CityList from '../../components/city-list/city-list';
+import MainPlaceCardList from '../../components/place-card/main-place-card-list';
+import Map from '../../components/map/map';
+import cities from '../../mocks/cities';
 
 export default function MainPage(): JSX.Element {
   const selectedCity = useAppSelector((state) => state.selectedCity);
@@ -64,9 +64,8 @@ export default function MainPage(): JSX.Element {
         <div className="cities">
           <div className="cities__places-container container">
             <MainPlaceCardList
-              totalCount={filteredOffers.length}
               cityName={selectedCity.name}
-              placeCards={filteredOffers}
+              offers={filteredOffers}
               onChangeActiveOfferId={setActiveOfferId}
             />
             <div className="cities__right-section">

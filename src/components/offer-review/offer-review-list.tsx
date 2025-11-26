@@ -1,11 +1,11 @@
 import { ReviewModel } from '../../models/review-model';
 import OfferReview from './offer-review';
 
-type OfferReviewListProps = {
+type Props = {
   models: ReviewModel[];
 };
 
-export default function OfferReviewList({ models }: OfferReviewListProps): JSX.Element {
+export default function OfferReviewList({ models }: Props): JSX.Element {
   return (
     <ul className="reviews__list">
       {models.map((m) => (
