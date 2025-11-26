@@ -11,7 +11,6 @@ import { PlaceCardModel } from './models/place-card-model';
 import { PlaceCardShortModel } from './models/place-card-short-model';
 
 type AppProps = {
-  mainPagePlacesCount: number;
   models: PlaceCardModel[];
   placeCards: PlaceCardShortModel[];
 };
@@ -22,7 +21,7 @@ export default function App(props: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage placesCount={props.mainPagePlacesCount} placeCards={props.placeCards} />}
+          element={<MainPage />}
         />
         <Route
           path={AppRoute.Login}

@@ -1,3 +1,4 @@
+import { CityModel } from './city';
 import { LocationModel } from './location-model';
 
 export type PlaceCardShortModel = {
@@ -6,10 +7,7 @@ export type PlaceCardShortModel = {
   type: string;
   price: number;
   previewImage: string;
-  city: {
-    name: string;
-    location: LocationModel;
-  };
+  city: CityModel;
   location: LocationModel;
   isFavorite: boolean;
   isPremium: boolean;
