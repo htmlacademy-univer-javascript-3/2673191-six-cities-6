@@ -1,11 +1,11 @@
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import PlaceCard from './place-card';
 
-type NearPlaceCardListProps = {
+type Props = {
   placeCards: PlaceCardShortModel[];
 };
 
-export default function NearPlaceCardList({ placeCards }: NearPlaceCardListProps): JSX.Element {
+export default function NearPlaceCardList({ placeCards }: Props): JSX.Element {
   return (
     <section className="near-places places">
       <h2 className="near-places__title">

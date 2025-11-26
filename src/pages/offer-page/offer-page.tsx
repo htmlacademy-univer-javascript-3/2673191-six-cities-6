@@ -4,12 +4,12 @@ import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import { PlaceCardModel } from '../../models/place-card-model';
 import Offer from '../../components/offer/offer';
 
-type OfferPageProps = {
+type Props = {
   models: PlaceCardModel[];
   nearbyPlaceCards: PlaceCardShortModel[];
 };
 
-export default function OfferPage({ models, nearbyPlaceCards }: OfferPageProps): JSX.Element {
+export default function OfferPage({ models, nearbyPlaceCards }: Props): JSX.Element {
   const { id } = useParams<{ id: string }>();
   const model = models.filter((m) => m.id === id)[0];
   if (!model) {

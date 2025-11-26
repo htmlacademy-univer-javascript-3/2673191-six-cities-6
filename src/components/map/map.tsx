@@ -19,14 +19,14 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-type MapProps = {
+type Props = {
   type: 'cities' | 'offer';
   cityLocation: LocationModel;
   offerLocations: [string, LocationModel][];
   selectedOfferId?: string;
 };
 
-export default function Map({ type, cityLocation, offerLocations, selectedOfferId }: MapProps): JSX.Element {
+export default function Map({ type, cityLocation, offerLocations, selectedOfferId }: Props): JSX.Element {
   const mapClass = {
     'cities': 'cities__map',
     'offer': 'offer__map'

@@ -2,11 +2,11 @@ import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import { groupBy } from '../../tools/group-by';
 import PlaceCard from './place-card';
 
-type FavoritePlaceCardListProps = {
+type Props = {
   placeCards: PlaceCardShortModel[];
 };
 
-export default function FavoritePlaceCardList({ placeCards }: FavoritePlaceCardListProps): JSX.Element {
+export default function FavoritePlaceCardList({ placeCards }: Props): JSX.Element {
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
