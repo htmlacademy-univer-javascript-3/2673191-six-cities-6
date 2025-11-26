@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './app';
-import { Setting } from './configuration/consts';
 import offers from './mocks/offers';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -10,6 +11,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <App mainPagePlacesCount={Setting.mainPagePlaceCardsPerPage} models={offers} placeCards={offers}/>
+    <Provider store={store}>
+      <App models={offers} placeCards={offers} />
+    </Provider>
   </React.StrictMode>
 );

@@ -23,7 +23,7 @@ type MapProps = {
   type: 'cities' | 'offer';
   cityLocation: LocationModel;
   offerLocations: [string, LocationModel][];
-  selectedOfferId: string;
+  selectedOfferId?: string;
 };
 
 export default function Map({ type, cityLocation, offerLocations, selectedOfferId }: MapProps): JSX.Element {

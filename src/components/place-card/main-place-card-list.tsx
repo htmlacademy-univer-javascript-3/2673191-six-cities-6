@@ -1,19 +1,18 @@
-import { useState } from 'react';
 import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import PlaceCard from './place-card';
 
 type PlaceCardListProps = {
   totalCount: number;
+  cityName: string;
   placeCards: PlaceCardShortModel[];
+  onChangeActiveOfferId: (offerId: string | undefined) => void;
 };
 
-export default function MainPlaceCardList(props: PlaceCardListProps): JSX.Element {
-  const [, setActiveCardId] = useState<string>();
-
+export default function MainPlaceCardList({ totalCount, cityName, placeCards, onChangeActiveOfferId }: PlaceCardListProps): JSX.Element {
   return (
     <section className="cities__places places">
       <h2 className="visually-hidden">Places</h2>
-      <b className="places__found">{props.totalCount} places to stay in Amsterdam</b>
+      <b className="places__found">{totalCount} places to stay in {cityName}</b>
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex={0}>
@@ -30,13 +29,13 @@ export default function MainPlaceCardList(props: PlaceCardListProps): JSX.Elemen
         </ul>
       </form>
       <div className="cities__places-list places__list tabs__content">
-        {props.placeCards.map((c) => (
+        {placeCards.map((c) => (
           <PlaceCard
             variant='city'
             key={c.id}
             model={c}
-            onMouseEnter={() => setActiveCardId(c.id)}
-            onMouseLeave={() => setActiveCardId(undefined)}
+            onMouseEnter={() => onChangeActiveOfferId(c.id)}
+            onMouseLeave={() => onChangeActiveOfferId(undefined)}
           />
         ))}
       </div>
