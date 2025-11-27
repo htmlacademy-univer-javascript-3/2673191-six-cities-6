@@ -1,8 +1,8 @@
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import { OfferShortModel } from '../../models/offer-short-model';
 import PlaceCard from './place-card';
 
 type Props = {
-  placeCards: PlaceCardShortModel[];
+  placeCards: OfferShortModel[];
 };
 
 export default function NearPlaceCardList({ placeCards }: Props): JSX.Element {

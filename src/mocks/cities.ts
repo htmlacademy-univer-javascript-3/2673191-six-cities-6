@@ -1,3 +1,5 @@
+import { CityModel } from '../models/city';
+
 export default [
   {
     'name': 'Paris',
@@ -47,4 +49,4 @@ export default [
       'zoom': 13
     }
   }
-];
+] as CityModel[];

@@ -1,6 +1,6 @@
-import { PlaceCardShortModel } from './place-card-short-model';
+import { OfferShortModel } from './offer-short-model';
 
-export type PlaceCardModel = Omit<PlaceCardShortModel, 'previewImage'> & {
+export type OfferModel = Omit<OfferShortModel, 'previewImage'> & {
   description: string;
   images: string[];
   goods: string[];

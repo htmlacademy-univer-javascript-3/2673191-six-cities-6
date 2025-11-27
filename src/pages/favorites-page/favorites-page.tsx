@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import { AppRoute } from '../../app-route';
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
 import FavoritePlaceCardList from '../../components/place-card/favorite-place-card-list';
 
-type Props = {
-  placeCards: PlaceCardShortModel[];
-};
+export default function FavoritesPage(): JSX.Element {
+  const offers = useAppSelector((state) => state.offers);
 
-export default function FavoritesPage({ placeCards }: Props): JSX.Element {
+  const favoriteOffers = offers?.filter((offer) => offer.isFavorite);
+
   return (
     <div className="page">
       <header className="header">
@@ -50,7 +50,7 @@ export default function FavoritesPage({ placeCards }: Props): JSX.Element {
       </header>
       <main className="page__main page__main--favorites">
         <div className="page__favorites-container container">
-          <FavoritePlaceCardList placeCards={placeCards} />
+          <FavoritePlaceCardList offers={favoriteOffers} />
         </div>
       </main>
       <footer className="footer container">
