@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import { OfferShortModel } from '../../models/offer-short-model';
 import { OfferSortOption } from '../../models/offer-sort-option';
 import PlaceCardSortForm from './place-card-sort-form';
 import PlaceCard from './place-card';
 
 type Props = {
   cityName: string;
-  offers: PlaceCardShortModel[];
+  offers: OfferShortModel[];
   onChangeActiveOfferId: (offerId: string | undefined) => void;
 };
 
-const SORTERS: Record<OfferSortOption, ((offers: PlaceCardShortModel[]) => PlaceCardShortModel[])> = {
+const SORTERS: Record<OfferSortOption, ((offers: OfferShortModel[]) => OfferShortModel[])> = {
   [OfferSortOption.Popular]: (offers) => offers,
   [OfferSortOption.PriceLowToHigh]: (offers) => offers.slice().sort((a, b) => a.price - b.price),
   [OfferSortOption.PriceHighToLow]: (offers) => offers.slice().sort((a, b) => b.price - a.price),

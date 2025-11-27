@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import { OfferShortModel } from '../../models/offer-short-model';
 import FavoritePlaceCardList from '../../components/place-card/favorite-place-card-list';
 
 type Props = {
-  placeCards: PlaceCardShortModel[];
+  placeCards: OfferShortModel[];
 };
 
 export default function FavoritesPage({ placeCards }: Props): JSX.Element {

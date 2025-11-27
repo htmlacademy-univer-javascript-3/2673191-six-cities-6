@@ -1,12 +1,12 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
-import { PlaceCardModel } from '../../models/place-card-model';
+import { OfferShortModel } from '../../models/offer-short-model';
+import { OfferModel } from '../../models/offer-model';
 import Offer from '../../components/offer/offer';
 
 type Props = {
-  models: PlaceCardModel[];
-  nearbyPlaceCards: PlaceCardShortModel[];
+  models: OfferModel[];
+  nearbyPlaceCards: OfferShortModel[];
 };
 
 export default function OfferPage({ models, nearbyPlaceCards }: Props): JSX.Element {

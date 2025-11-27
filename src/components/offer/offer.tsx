@@ -1,13 +1,13 @@
 import { Fragment } from 'react';
-import { PlaceCardModel } from '../../models/place-card-model';
+import { OfferModel } from '../../models/offer-model';
 import OfferReviewSection from '../offer-review/offer-review-section';
 import NearPlaceCardList from '../place-card/near-place-card-list';
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import { OfferShortModel } from '../../models/offer-short-model';
 import Map from '../map/map';
 
 type Props = {
-  model: PlaceCardModel;
-  nearbyPlaceCards: PlaceCardShortModel[];
+  model: OfferModel;
+  nearbyPlaceCards: OfferShortModel[];
 };
 
 export default function Offer({ model, nearbyPlaceCards }: Props): JSX.Element {

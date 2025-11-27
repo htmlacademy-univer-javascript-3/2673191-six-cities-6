@@ -1,13 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { CityModel } from '../models/city';
-import { PlaceCardShortModel } from '../models/place-card-short-model';
+import { OfferShortModel } from '../models/offer-short-model';
 import { selectCity, setOffers } from './action';
 import offers from '../mocks/offers';
 import cities from '../mocks/cities';
 
 export type State = {
   selectedCity: CityModel;
-  offers: PlaceCardShortModel[];
+  offers: OfferShortModel[];
 }
 
 const initialState: State = {

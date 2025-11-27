@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../app-route';
-import { PlaceCardShortModel } from '../../models/place-card-short-model';
+import { OfferShortModel } from '../../models/offer-short-model';
 
 type Props = {
   variant: 'city' | 'favorite' | 'nearby';
-  model: PlaceCardShortModel;
+  model: OfferShortModel;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
 };

@@ -7,12 +7,12 @@ import LoginPage from './pages/login-page/login-page';
 import FavoritesPage from './pages/favorites-page/favorites-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
-import { PlaceCardModel } from './models/place-card-model';
-import { PlaceCardShortModel } from './models/place-card-short-model';
+import { OfferModel } from './models/offer-model';
+import { OfferShortModel } from './models/offer-short-model';
 
 type Props = {
-  models: PlaceCardModel[];
-  placeCards: PlaceCardShortModel[];
+  models: OfferModel[];
+  placeCards: OfferShortModel[];
 };
 
 export default function App(props: Props): JSX.Element {

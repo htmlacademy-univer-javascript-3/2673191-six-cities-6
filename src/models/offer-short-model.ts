@@ -1,7 +1,7 @@
 import { CityModel } from './city';
 import { LocationModel } from './location-model';
 
-export type PlaceCardShortModel = {
+export type OfferShortModel = {
   id: string;
   title: string;
   type: string;
