@@ -2,17 +2,16 @@ import { createReducer } from '@reduxjs/toolkit';
 import { CityModel } from '../models/city';
 import { OfferShortModel } from '../models/offer-short-model';
 import { selectCity, setOffers } from './action';
-import offers from '../mocks/offers';
 import cities from '../mocks/cities';
 
 export type State = {
   selectedCity: CityModel;
-  offers: OfferShortModel[];
+  offers: OfferShortModel[] | null;
 }
 
 const initialState: State = {
   selectedCity: cities[0],
-  offers: offers
+  offers: null
 };
 
 export const reducer = createReducer(initialState, (builder) => builder

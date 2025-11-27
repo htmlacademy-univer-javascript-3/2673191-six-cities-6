@@ -17,7 +17,7 @@ export default function MainPage(): JSX.Element {
   const [activeOfferId, setActiveOfferId] = useState<string>();
 
   const filteredOffers = useMemo(
-    () => offers.filter((o) => o.city.name === selectedCity.name),
+    () => offers?.filter((o) => o.city.name === selectedCity.name),
     [selectedCity.name, offers]
   );
 
@@ -72,7 +72,7 @@ export default function MainPage(): JSX.Element {
               <Map
                 type='cities'
                 cityLocation={selectedCity.location}
-                offerLocations={filteredOffers.map((p) => [p.id, p.location])}
+                offerLocations={filteredOffers?.map((p) => [p.id, p.location]) ?? []}
                 selectedOfferId={activeOfferId}
               />
             </div>

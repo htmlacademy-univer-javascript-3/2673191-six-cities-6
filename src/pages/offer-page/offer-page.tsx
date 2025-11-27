@@ -1,17 +1,14 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
+import { useAppSelector } from '../../hooks/use-app-selector';
 import { AppRoute } from '../../app-route';
-import { OfferShortModel } from '../../models/offer-short-model';
-import { OfferModel } from '../../models/offer-model';
 import Offer from '../../components/offer/offer';
 
-type Props = {
-  models: OfferModel[];
-  nearbyPlaceCards: OfferShortModel[];
-};
-
-export default function OfferPage({ models, nearbyPlaceCards }: Props): JSX.Element {
+export default function OfferPage(): JSX.Element {
   const { id } = useParams<{ id: string }>();
-  const model = models.filter((m) => m.id === id)[0];
+
+  const offers = useAppSelector((state) => state.offers);
+
+  const model = offers?.filter((m) => m.id === id)[0];
   if (!model) {
     return <Navigate to={AppRoute.Root} />;
   }
@@ -56,7 +53,7 @@ export default function OfferPage({ models, nearbyPlaceCards }: Props): JSX.Elem
         </div>
       </header>
       <main className="page__main page__main--offer">
-        <Offer model={model} nearbyPlaceCards={nearbyPlaceCards} />
+        <Offer model={model} nearbyPlaceCards={offers} />
       </main>
     </div>
   );

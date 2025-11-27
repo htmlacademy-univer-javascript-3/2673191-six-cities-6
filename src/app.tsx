@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useAppDispatch } from './hooks/use-map-dispatch';
 import { AppRoute } from './app-route';
 import { AuthorizationStatus } from './models/authorization-status';
 import PrivateRoute from './components/private-route/private-route';
@@ -7,15 +9,15 @@ import LoginPage from './pages/login-page/login-page';
 import FavoritesPage from './pages/favorites-page/favorites-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
-import { OfferModel } from './models/offer-model';
-import { OfferShortModel } from './models/offer-short-model';
+import { fetchOffers } from './store/api-actions';
 
-type Props = {
-  models: OfferModel[];
-  placeCards: OfferShortModel[];
-};
+export default function App(): JSX.Element {
+  const dispatch = useAppDispatch();
 
-export default function App(props: Props): JSX.Element {
+  useEffect(() => {
+    dispatch(fetchOffers());
+  }, [dispatch]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -33,13 +35,13 @@ export default function App(props: Props): JSX.Element {
             <PrivateRoute
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
-              <FavoritesPage placeCards={props.placeCards} />
+              <FavoritesPage />
             </PrivateRoute>
           }
         />
         <Route
           path={`${AppRoute.Offer}/:id`}
-          element={<OfferPage models={props.models} nearbyPlaceCards={props.placeCards} />}
+          element={<OfferPage />}
         />
         <Route
           path="*"
