@@ -1,15 +1,29 @@
 import { useState } from 'react';
+import prevented from '../../tools/prevented';
+import handleRequest from '../../tools/handle-request';
+import { appApi } from '../../api/api';
+import { ReviewModel } from '../../models/review-model';
 
-export default function OfferReviewForm(): JSX.Element {
+type Props = {
+  offerId: string;
+  onPostComment: (comment: ReviewModel) => unknown;
+}
+
+export default function OfferReviewForm({ offerId, onPostComment }: Props): JSX.Element {
   const [formState, setFormState] = useState({
     rating: 0,
-    review: ''
+    comment: ''
   });
 
-  const allowed = formState.rating && formState.review.length >= 50;
+  const allowed = formState.rating && formState.comment.length >= 50;
+
+  const postComment = () => handleRequest(
+    () => appApi.post<ReviewModel>(`comments/${offerId}`, formState),
+    onPostComment
+  );
 
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" onSubmit={prevented(postComment)}>
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -105,8 +119,8 @@ export default function OfferReviewForm(): JSX.Element {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formState.review}
-        onChange={(e) => setFormState((s) => ({ ...s, review: e.target.value }))}
+        value={formState.comment}
+        onChange={(e) => setFormState((s) => ({ ...s, comment: e.target.value }))}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">

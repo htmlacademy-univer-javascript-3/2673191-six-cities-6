@@ -111,7 +111,7 @@ export default function Offer({ offer, nearbyOffers }: Props): JSX.Element {
                 </p>
               </div>
             </div>
-            <OfferReviewSection />
+            <OfferReviewSection offerId={offer.id} />
           </div>
         </div>
         <Map
