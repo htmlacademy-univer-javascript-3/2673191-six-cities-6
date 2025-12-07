@@ -20,6 +20,8 @@ export default function MainPage(): JSX.Element {
     [selectedCity.name, offers]
   );
 
+  const isEmpty = filteredOffers?.length === 0;
+
   return (
     <div className="page page--gray page--main">
       <Header />
@@ -33,19 +35,28 @@ export default function MainPage(): JSX.Element {
           />
         </div>
         <div className="cities">
-          <div className="cities__places-container container">
-            <MainPlaceCardList
-              cityName={selectedCity.name}
-              offers={filteredOffers}
-              onChangeActiveOfferId={setActiveOfferId}
-            />
+          <div className={`cities__places-container container` + (isEmpty ? ' cities__places-container--empty' : '')}>
+            {isEmpty
+              ?
+              <section className="cities__no-places">
+                <div className="cities__status-wrapper tabs__content">
+                  <b className="cities__status">No places to stay available</b>
+                  <p className="cities__status-description">We could not find any property available at the moment in {selectedCity.name}</p>
+                </div>
+              </section>
+              : <MainPlaceCardList
+                cityName={selectedCity.name}
+                offers={filteredOffers}
+                onChangeActiveOfferId={setActiveOfferId}
+              />}
             <div className="cities__right-section">
-              <Map
-                type='cities'
-                cityLocation={selectedCity.location}
-                offerLocations={filteredOffers?.map((p) => [p.id, p.location]) ?? []}
-                selectedOfferId={activeOfferId}
-              />
+              {!isEmpty &&
+                <Map
+                  type='cities'
+                  cityLocation={selectedCity.location}
+                  offerLocations={filteredOffers?.map((p) => [p.id, p.location])}
+                  selectedOfferId={activeOfferId}
+                />}
             </div>
           </div>
         </div>

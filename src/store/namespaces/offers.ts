@@ -26,11 +26,11 @@ export const fetchOffers = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     () => api.get<OfferShortModel[]>('offers'),
     (data) => dispatch(setOffers(data)),
     {},
-    () => { }
+    () => dispatch(setOffers([]))
   ));
 
 export const selectCity = createAction<CityModel>('select_city');
-export const setOffers = createAction<OfferShortModel[]>('set_offers');
+export const setOffers = createAction<OfferShortModel[] | null>('set_offers');
 
 export const offersSlice = createSlice({
   name: Namespace.Offers,
