@@ -22,7 +22,7 @@ const currentCustomIcon = new Icon({
 type Props = {
   type: 'cities' | 'offer';
   cityLocation: LocationModel;
-  offerLocations: [string, LocationModel][];
+  offerLocations?: [string, LocationModel][];
   selectedOfferId?: string;
 };
 
@@ -40,7 +40,7 @@ export default function Map({ type, cityLocation, offerLocations, selectedOfferI
       return;
     }
     const markerLayer = layerGroup().addTo(map);
-    for (const [offerId, location] of offerLocations) {
+    for (const [offerId, location] of offerLocations ?? []) {
       const marker = new Marker({
         lat: location.latitude,
         lng: location.longitude
