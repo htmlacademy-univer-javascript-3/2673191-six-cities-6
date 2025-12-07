@@ -8,6 +8,7 @@ import { UserModel } from '../models/user-model';
 import { OfferShortModel } from '../models/offer-short-model';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { RegistrationRequest } from '../models/registration-request';
+import { dropToken, saveToken } from '../services/token';
 
 type AsyncThunkConfig = {
   dispatch: AppDispatch;
@@ -20,6 +21,7 @@ export const fetchLogin = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     () => api.get<UserModel>('login'),
     (data) => {
       dispatch(setCurrentUser(data));
+      saveToken(data.token);
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
     },
     {
@@ -33,6 +35,7 @@ export const fetchRegistration = createAsyncThunk<void, RegistrationRequest, Asy
     () => api.post<UserModel>('login', arg),
     (data) => {
       dispatch(setCurrentUser(data));
+      saveToken(data.token);
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
     },
     {
@@ -46,6 +49,7 @@ export const fetchLogout = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     () => api.delete('logout'),
     () => {
       dispatch(setCurrentUser(null));
+      dropToken();
       dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
     },
     {},
