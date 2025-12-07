@@ -1,21 +1,26 @@
+import { useMemo } from 'react';
 import { OfferShortModel } from '../../models/offer-short-model';
 import groupBy from '../../tools/group-by';
 import Loader from '../loader/loader';
 import PlaceCard from './place-card';
 
 type Props = {
-  offers?: OfferShortModel[];
+  offers: OfferShortModel[] | null;
 };
 
 export default function FavoritePlaceCardList({ offers }: Props): JSX.Element {
+  const groupedOffers = useMemo(
+    () => offers && Object.entries(groupBy(offers, (c) => c.city.name)),
+    [offers]);
+
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
-      {!offers
+      {!groupedOffers
         ? <Loader />
         :
         <ul className="favorites__list">
-          {Object.entries(groupBy(offers, (c) => c.city.name)).map(([city, cards]) => (
+          {groupedOffers.map(([city, cards]) => (
             <li key={city} className="favorites__locations-items">
               <div className="favorites__locations locations locations--current">
                 <div className="locations__item">

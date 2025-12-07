@@ -6,6 +6,7 @@ import handleRequest from '../../tools/handle-request';
 import { dropToken, saveToken } from '../../services/token';
 import { RegistrationRequest } from '../../models/registration-request';
 import { AxiosInstance } from 'axios';
+import { fetchFavoriteOffers } from './offers';
 
 export type AuthState = {
   authStatus: AuthorizationStatus;
@@ -28,6 +29,7 @@ export const fetchLogin = createAsyncThunk<void, undefined, AsyncThunkConfig>(
       dispatch(setCurrentUser(data));
       saveToken(data.token);
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
+      dispatch(fetchFavoriteOffers());
     },
     {
       [401]: () => dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
@@ -42,6 +44,7 @@ export const fetchRegistration = createAsyncThunk<void, RegistrationRequest, Asy
       dispatch(setCurrentUser(data));
       saveToken(data.token);
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
+      dispatch(fetchFavoriteOffers());
     },
     {
       [400]: () => dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
