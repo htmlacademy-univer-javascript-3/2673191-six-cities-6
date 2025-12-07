@@ -1,4 +1,4 @@
-export function groupBy<T, K extends string | number | symbol>(
+export default function groupBy<T, K extends string | number | symbol>(
   arr: T[],
   keySelector: (item: T) => K
 ): Record<K, T[]> {

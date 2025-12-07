@@ -1,5 +1,5 @@
 import { OfferShortModel } from '../../models/offer-short-model';
-import { groupBy } from '../../tools/group-by';
+import groupBy from '../../tools/group-by';
 import Loader from '../loader/loader';
 import PlaceCard from './place-card';
 
