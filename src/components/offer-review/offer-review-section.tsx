@@ -14,7 +14,7 @@ type Props = {
 }
 
 export default function OfferReviewSection({ offerId }: Props): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector((state) => state.auth.authStatus);
 
   const [comments, setComments] = useState<ReviewModel[] | null>();
 

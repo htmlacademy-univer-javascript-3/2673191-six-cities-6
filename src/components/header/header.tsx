@@ -3,12 +3,12 @@ import { AppRoute } from '../../app-route';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { AuthorizationStatus } from '../../models/authorization-status';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { fetchLogout } from '../../store/api-actions';
 import prevented from '../../tools/prevented';
+import { fetchLogout } from '../../store/namespaces/auth';
 
 export default function Header(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
-  const currentUser = useAppSelector((state) => state.currentUser);
+  const authStatus = useAppSelector((state) => state.auth.authStatus);
+  const currentUser = useAppSelector((state) => state.auth.currentUser);
   const dispatch = useAppDispatch();
 
   const isAuth = authStatus === AuthorizationStatus.Auth && currentUser;

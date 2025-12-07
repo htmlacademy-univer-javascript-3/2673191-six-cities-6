@@ -4,11 +4,11 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { AuthorizationStatus } from '../../models/authorization-status';
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { fetchRegistration } from '../../store/api-actions';
 import prevented from '../../tools/prevented';
+import { fetchRegistration } from '../../store/namespaces/auth';
 
 export default function LoginPage(): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector((state) => state.auth.authStatus);
   const dispatch = useAppDispatch();
 
   const [formState, setFormState] = useState({

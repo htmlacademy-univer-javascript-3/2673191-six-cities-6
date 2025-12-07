@@ -1,18 +1,23 @@
+import { createAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { AuthorizationStatus } from '../../models/authorization-status';
+import { UserModel } from '../../models/user-model';
+import { Namespace } from '../namespace';
+import handleRequest from '../../tools/handle-request';
+import { dropToken, saveToken } from '../../services/token';
+import { RegistrationRequest } from '../../models/registration-request';
 import { AxiosInstance } from 'axios';
-import handleRequest from '../tools/handle-request';
-import { AppDispatch } from '.';
-import { State } from './reducer';
-import { setAuthStatus, setCurrentUser, setOffers } from './action';
-import { AuthorizationStatus } from '../models/authorization-status';
-import { UserModel } from '../models/user-model';
-import { OfferShortModel } from '../models/offer-short-model';
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { RegistrationRequest } from '../models/registration-request';
-import { dropToken, saveToken } from '../services/token';
+
+export type AuthState = {
+  authStatus: AuthorizationStatus;
+  currentUser: UserModel | null;
+}
+
+const initialState: AuthState = {
+  authStatus: AuthorizationStatus.Unknown,
+  currentUser: null
+};
 
 type AsyncThunkConfig = {
-  dispatch: AppDispatch;
-  state: State;
   extra: AxiosInstance;
 }
 
@@ -56,11 +61,18 @@ export const fetchLogout = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     () => dispatch(setAuthStatus(AuthorizationStatus.Unknown))
   ));
 
-export const fetchOffers = createAsyncThunk<void, undefined, AsyncThunkConfig>(
-  'fetch_offers',
-  async (_arg, { dispatch, extra: api }) => handleRequest(
-    () => api.get<OfferShortModel[]>('offers'),
-    (data) => dispatch(setOffers(data)),
-    {},
-    () => { }
-  ));
+export const setAuthStatus = createAction<AuthorizationStatus>('set_auth_status');
+export const setCurrentUser = createAction<UserModel | null>('set_current_user');
+
+export const authSlice = createSlice({
+  name: Namespace.Auth,
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => builder
+    .addCase(setAuthStatus, (state, { payload }) => {
+      state.authStatus = payload;
+    })
+    .addCase(setCurrentUser, (state, { payload }) => {
+      state.currentUser = payload;
+    })
+});
