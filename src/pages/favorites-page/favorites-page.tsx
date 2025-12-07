@@ -5,7 +5,7 @@ import FavoritePlaceCardList from '../../components/place-card/favorite-place-ca
 import Header from '../../components/header/header';
 
 export default function FavoritesPage(): JSX.Element {
-  const offers = useAppSelector((state) => state.offers);
+  const offers = useAppSelector((state) => state.offers.offers);
 
   const favoriteOffers = offers?.filter((offer) => offer.isFavorite);
 

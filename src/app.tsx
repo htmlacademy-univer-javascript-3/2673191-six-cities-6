@@ -8,7 +8,8 @@ import LoginPage from './pages/login-page/login-page';
 import FavoritesPage from './pages/favorites-page/favorites-page';
 import OfferPage from './pages/offer-page/offer-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
-import { fetchLogin, fetchOffers } from './store/api-actions';
+import { fetchLogin } from './store/namespaces/auth';
+import { fetchOffers } from './store/namespaces/offers';
 
 export default function App(): JSX.Element {
   const dispatch = useAppDispatch();

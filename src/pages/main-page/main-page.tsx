@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { selectCity } from '../../store/action';
 import CityList from '../../components/city-list/city-list';
 import MainPlaceCardList from '../../components/place-card/main-place-card-list';
 import Map from '../../components/map/map';
 import cities from '../../mocks/cities';
 import Header from '../../components/header/header';
+import { selectCity } from '../../store/namespaces/offers';
 
 export default function MainPage(): JSX.Element {
-  const selectedCity = useAppSelector((state) => state.selectedCity);
-  const offers = useAppSelector((state) => state.offers);
+  const selectedCity = useAppSelector((state) => state.offers.selectedCity);
+  const offers = useAppSelector((state) => state.offers.offers);
   const dispatch = useAppDispatch();
 
   const [activeOfferId, setActiveOfferId] = useState<string>();

@@ -8,7 +8,7 @@ type Props = {
 }
 
 export default function PrivateRoute({ children }: Props): JSX.Element {
-  const authStatus = useAppSelector((state) => state.authStatus);
+  const authStatus = useAppSelector((state) => state.auth.authStatus);
 
   return (
     authStatus === AuthorizationStatus.Auth
