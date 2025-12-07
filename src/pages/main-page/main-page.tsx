@@ -35,7 +35,7 @@ export default function MainPage(): JSX.Element {
           />
         </div>
         <div className="cities">
-          <div className={`cities__places-container container` + (isEmpty ? ' cities__places-container--empty' : '')}>
+          <div className={`cities__places-container${isEmpty ? ' cities__places-container--empty' : ''} container`}>
             {isEmpty
               ?
               <section className="cities__no-places">
@@ -44,7 +44,8 @@ export default function MainPage(): JSX.Element {
                   <p className="cities__status-description">We could not find any property available at the moment in {selectedCity.name}</p>
                 </div>
               </section>
-              : <MainPlaceCardList
+              :
+              <MainPlaceCardList
                 cityName={selectedCity.name}
                 offers={filteredOffers}
                 onChangeActiveOfferId={setActiveOfferId}

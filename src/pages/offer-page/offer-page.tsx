@@ -33,12 +33,12 @@ export default function OfferPage(): JSX.Element {
 
   const trueOffer = useMemo(() => offer && {
     ...offer,
-    isFavorite: favoriteOffers?.some(o => o.id == offer?.id) ?? offer.isFavorite
+    isFavorite: favoriteOffers?.some((o) => o.id === offer?.id) ?? offer.isFavorite
   }, [offer, favoriteOffers]);
 
   const trueNearByOffers = useMemo(() => nearbyOffers && nearbyOffers.map((no) => ({
     ...no,
-    isFavorite: favoriteOffers?.some(o => o.id == no?.id) ?? no.isFavorite
+    isFavorite: favoriteOffers?.some((o) => o.id === no?.id) ?? no.isFavorite
   })), [nearbyOffers, favoriteOffers]);
 
   if (offer === null || nearbyOffers === null) {

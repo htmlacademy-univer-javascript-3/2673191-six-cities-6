@@ -22,6 +22,11 @@ type AsyncThunkConfig = {
   extra: AxiosInstance;
 }
 
+export const selectCity = createAction<CityModel>('select_city');
+export const setOffers = createAction<OfferShortModel[] | null>('set_offers');
+export const setFavoriteOffers = createAction<OfferShortModel[] | null>('set_favorite_offers');
+export const updateFavoriteOffer = createAction<OfferShortModel>('update_favorite_offer');
+
 export const fetchOffers = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   'fetch_offers',
   async (_arg, { dispatch, extra: api }) => handleRequest(
@@ -40,17 +45,12 @@ export const fetchFavoriteOffers = createAsyncThunk<void, undefined, AsyncThunkC
     () => dispatch(setFavoriteOffers([]))
   ));
 
-export const fetchUpdateFavoriteOffer = createAsyncThunk<void, { offerId: string, isFavorite: boolean }, AsyncThunkConfig>(
+export const fetchUpdateFavoriteOffer = createAsyncThunk<void, { offerId: string; isFavorite: boolean }, AsyncThunkConfig>(
   'fetch_update_favorite_offer',
   async (arg, { dispatch, extra: api }) => handleRequest(
     () => api.post<OfferShortModel>(`favorite/${arg.offerId}/${arg.isFavorite ? 1 : 0}`),
     (data) => dispatch(updateFavoriteOffer(data))
   ));
-
-export const selectCity = createAction<CityModel>('select_city');
-export const setOffers = createAction<OfferShortModel[] | null>('set_offers');
-export const setFavoriteOffers = createAction<OfferShortModel[] | null>('set_favorite_offers');
-export const updateFavoriteOffer = createAction<OfferShortModel>('update_favorite_offer');
 
 export const offersSlice = createSlice({
   name: Namespace.Offers,
@@ -68,16 +68,15 @@ export const offersSlice = createSlice({
     })
     .addCase(updateFavoriteOffer, (state, { payload }) => {
       if (state.favoriteOffers !== null) {
-        const index = state.favoriteOffers.findIndex(o => o.id === payload.id);
+        const index = state.favoriteOffers.findIndex((o) => o.id === payload.id);
         if (payload.isFavorite && index < 0) {
           state.favoriteOffers.push(payload);
-        }
-        else if (!payload.isFavorite && index >= 0) {
+        } else if (!payload.isFavorite && index >= 0) {
           state.favoriteOffers.splice(index, 1);
         }
       }
       if (state.offers !== null) {
-        const index = state.offers.findIndex(o => o.id === payload.id);
+        const index = state.offers.findIndex((o) => o.id === payload.id);
         if (index >= 0) {
           state.offers[index] = payload;
         }

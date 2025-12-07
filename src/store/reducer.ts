@@ -6,4 +6,4 @@ import { offersSlice } from './namespaces/offers';
 export const rootReducer = combineReducers({
   [Namespace.Auth]: authSlice.reducer,
   [Namespace.Offers]: offersSlice.reducer
-})
+});

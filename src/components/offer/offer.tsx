@@ -42,9 +42,8 @@ export default function Offer({ offer, nearbyOffers }: Props): JSX.Element {
 
   const bookmarkOnClick = () => {
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(fetchUpdateFavoriteOffer({offerId: offer.id, isFavorite: !offer.isFavorite}));
-    }
-    else {
+      dispatch(fetchUpdateFavoriteOffer({ offerId: offer.id, isFavorite: !offer.isFavorite }));
+    } else {
       navigate(AppRoute.Login);
     }
   };

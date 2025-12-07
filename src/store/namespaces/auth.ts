@@ -22,6 +22,9 @@ type AsyncThunkConfig = {
   extra: AxiosInstance;
 }
 
+export const setAuthStatus = createAction<AuthorizationStatus>('set_auth_status');
+export const setCurrentUser = createAction<UserModel | null>('set_current_user');
+
 export const fetchLogin = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   'fetch_login', (_arg, { dispatch, extra: api }) => handleRequest(
     () => api.get<UserModel>('login'),
@@ -63,9 +66,6 @@ export const fetchLogout = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     {},
     () => dispatch(setAuthStatus(AuthorizationStatus.Unknown))
   ));
-
-export const setAuthStatus = createAction<AuthorizationStatus>('set_auth_status');
-export const setCurrentUser = createAction<UserModel | null>('set_current_user');
 
 export const authSlice = createSlice({
   name: Namespace.Auth,

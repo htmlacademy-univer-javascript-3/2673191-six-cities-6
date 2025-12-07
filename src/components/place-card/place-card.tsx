@@ -28,9 +28,8 @@ export default function PlaceCard({ variant, model, onMouseEnter, onMouseLeave }
 
   const bookmarkOnClick = () => {
     if (authStatus === AuthorizationStatus.Auth) {
-      dispatch(fetchUpdateFavoriteOffer({offerId: model.id, isFavorite: !model.isFavorite}));
-    }
-    else {
+      dispatch(fetchUpdateFavoriteOffer({ offerId: model.id, isFavorite: !model.isFavorite }));
+    } else {
       navigate(AppRoute.Login);
     }
   };
