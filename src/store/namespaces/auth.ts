@@ -6,6 +6,7 @@ import handleRequest from '../../tools/handle-request';
 import { dropToken, saveToken } from '../../services/token';
 import { RegistrationRequest } from '../../models/registration-request';
 import { AxiosInstance } from 'axios';
+import { fetchFavoriteOffers } from './offers';
 
 export type AuthState = {
   authStatus: AuthorizationStatus;
@@ -21,6 +22,9 @@ type AsyncThunkConfig = {
   extra: AxiosInstance;
 }
 
+export const setAuthStatus = createAction<AuthorizationStatus>('set_auth_status');
+export const setCurrentUser = createAction<UserModel | null>('set_current_user');
+
 export const fetchLogin = createAsyncThunk<void, undefined, AsyncThunkConfig>(
   'fetch_login', (_arg, { dispatch, extra: api }) => handleRequest(
     () => api.get<UserModel>('login'),
@@ -28,6 +32,7 @@ export const fetchLogin = createAsyncThunk<void, undefined, AsyncThunkConfig>(
       dispatch(setCurrentUser(data));
       saveToken(data.token);
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
+      dispatch(fetchFavoriteOffers());
     },
     {
       [401]: () => dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
@@ -42,6 +47,7 @@ export const fetchRegistration = createAsyncThunk<void, RegistrationRequest, Asy
       dispatch(setCurrentUser(data));
       saveToken(data.token);
       dispatch(setAuthStatus(AuthorizationStatus.Auth));
+      dispatch(fetchFavoriteOffers());
     },
     {
       [400]: () => dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
@@ -60,9 +66,6 @@ export const fetchLogout = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     {},
     () => dispatch(setAuthStatus(AuthorizationStatus.Unknown))
   ));
-
-export const setAuthStatus = createAction<AuthorizationStatus>('set_auth_status');
-export const setCurrentUser = createAction<UserModel | null>('set_current_user');
 
 export const authSlice = createSlice({
   name: Namespace.Auth,

@@ -9,6 +9,7 @@ import { fetchLogout } from '../../store/namespaces/auth';
 export default function Header(): JSX.Element {
   const authStatus = useAppSelector((state) => state.auth.authStatus);
   const currentUser = useAppSelector((state) => state.auth.currentUser);
+  const favoriteOffers = useAppSelector((state) => state.offers.favoriteOffers);
   const dispatch = useAppDispatch();
 
   const isAuth = authStatus === AuthorizationStatus.Auth && currentUser;
@@ -34,7 +35,7 @@ export default function Header(): JSX.Element {
                   {isAuth ?
                     <>
                       <span className="header__user-name user__name">{currentUser.email}</span>
-                      <span className="header__favorite-count">-</span>
+                      <span className="header__favorite-count">{favoriteOffers?.length ?? '-'}</span>
                     </> :
                     <span className="header__login">Sign in</span>}
                 </Link>

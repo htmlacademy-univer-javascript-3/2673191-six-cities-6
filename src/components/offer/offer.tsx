@@ -7,13 +7,24 @@ import Map from '../map/map';
 import Loader from '../loader/loader';
 import { LocationModel } from '../../models/location-model';
 import { Setting } from '../../configuration/consts';
+import prevented from '../../tools/prevented';
+import { fetchUpdateFavoriteOffer } from '../../store/namespaces/offers';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { AuthorizationStatus } from '../../models/authorization-status';
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../app-route';
 
 type Props = {
   offer: OfferModel;
-  nearbyOffers?: OfferShortModel[];
+  nearbyOffers?: OfferShortModel[] | null;
 };
 
 export default function Offer({ offer, nearbyOffers }: Props): JSX.Element {
+  const navigate = useNavigate();
+
+  const authStatus = useAppSelector((state) => state.auth.authStatus);
+  const dispatch = useAppDispatch();
   const limitedNearbyOffers = nearbyOffers?.slice(0, Setting.NEARBY_OFFERS_LIMIT);
 
   const offerLocations: [string, LocationModel][] = useMemo(
@@ -28,6 +39,14 @@ export default function Offer({ offer, nearbyOffers }: Props): JSX.Element {
     },
     [offer, limitedNearbyOffers]
   );
+
+  const bookmarkOnClick = () => {
+    if (authStatus === AuthorizationStatus.Auth) {
+      dispatch(fetchUpdateFavoriteOffer({ offerId: offer.id, isFavorite: !offer.isFavorite }));
+    } else {
+      navigate(AppRoute.Login);
+    }
+  };
 
   return (
     <Fragment>
@@ -55,7 +74,11 @@ export default function Offer({ offer, nearbyOffers }: Props): JSX.Element {
               <h1 className="offer__name">
                 {offer.title}
               </h1>
-              <button className={`offer__bookmark-button ${offer.isFavorite ? 'offer__bookmark-button--active ' : ''}button`} type="button">
+              <button
+                className={`offer__bookmark-button ${offer.isFavorite ? 'offer__bookmark-button--active ' : ''}button`}
+                type="button"
+                onClick={prevented(bookmarkOnClick)}
+              >
                 <svg className="offer__bookmark-icon" width={31} height={33}>
                   <use xlinkHref="#icon-bookmark" />
                 </svg>
