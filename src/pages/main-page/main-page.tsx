@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { useAppDispatch } from '../../hooks/use-map-dispatch';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { selectCity } from '../../store/action';
 import { AppRoute } from '../../app-route';
 import CityList from '../../components/city-list/city-list';
