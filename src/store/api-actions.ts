@@ -7,6 +7,7 @@ import { AuthorizationStatus } from '../models/authorization-status';
 import { UserModel } from '../models/user-model';
 import { OfferShortModel } from '../models/offer-short-model';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { RegistrationRequest } from '../models/registration-request';
 
 type AsyncThunkConfig = {
   dispatch: AppDispatch;
@@ -24,6 +25,30 @@ export const fetchLogin = createAsyncThunk<void, undefined, AsyncThunkConfig>(
     {
       [401]: () => dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
     },
+    () => dispatch(setAuthStatus(AuthorizationStatus.Unknown))
+  ));
+
+export const fetchRegistration = createAsyncThunk<void, RegistrationRequest, AsyncThunkConfig>(
+  'fetch_registration', (arg, { dispatch, extra: api }) => handleRequest(
+    () => api.post<UserModel>('login', arg),
+    (data) => {
+      dispatch(setCurrentUser(data));
+      dispatch(setAuthStatus(AuthorizationStatus.Auth));
+    },
+    {
+      [400]: () => dispatch(setAuthStatus(AuthorizationStatus.NoAuth))
+    },
+    () => dispatch(setAuthStatus(AuthorizationStatus.Unknown))
+  ));
+
+export const fetchLogout = createAsyncThunk<void, undefined, AsyncThunkConfig>(
+  'fetch_logout', (_arg, { dispatch, extra: api }) => handleRequest(
+    () => api.delete('logout'),
+    () => {
+      dispatch(setCurrentUser(null));
+      dispatch(setAuthStatus(AuthorizationStatus.NoAuth));
+    },
+    {},
     () => dispatch(setAuthStatus(AuthorizationStatus.Unknown))
   ));
 

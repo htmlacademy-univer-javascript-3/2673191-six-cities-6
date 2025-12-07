@@ -6,7 +6,7 @@ export default function OfferReviewForm(): JSX.Element {
     review: ''
   });
 
-  const allowed = !!formState.rating && formState.review.length >= 50;
+  const allowed = formState.rating && formState.review.length >= 50;
 
   return (
     <form className="reviews__form form" action="#" method="post">
